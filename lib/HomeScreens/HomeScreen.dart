@@ -1,5 +1,7 @@
+import 'package:blooddonation/bottomNavBar/donationrequest.dart';
 import 'package:blooddonation/model/onboarding.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 class HomeScreen extends StatefulWidget {
@@ -58,158 +60,196 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
 
   Widget build(BuildContext context) {
+    int currntTab = 0;
 
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xFFF5F5F5),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 22.0, top: 34.0, right: 14.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Welcome Asis', style: GoogleFonts.poppins(fontSize: 22, fontWeight: FontWeight.w500, color: Color(0xFF272A2F)),),
-                  Icon(Icons.notifications_active, size: 32, color: Color(0xFF272A2F),)
-                ],
-              ),
-            ),
-            SizedBox(height: 15.0,),
-            Stack(
-              children: [
-                CarouselSlider(items: generateImageTiles(), options: CarouselOptions(
-                  enlargeCenterPage: true,
-                  autoPlay: true,
-                  aspectRatio: 2,
-                  onPageChanged: (index, reason){
-                    setState(() {
-                      _current = index;
-                    });
-                  }
-                ))
-              ],
-            ),
-            SizedBox(height: 15.0,),
+        body: SingleChildScrollView(
+          // physics: ScrollPhysics(),
+          child:
             Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children:
-                List.generate(images.length, (index) => buildDot(index, context)),
-
-              ),
-            ),
-            SizedBox(height: 25.0,),
-            Container(
-              height: 140,
-              // width: MediaQuery.of(context).size.width,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 3,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, int index){
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 135,
-                        width: MediaQuery.of(context).size.width*0.27,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12.0)
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only( top: 18.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Center(child: Image.asset(details[index].image,)),
-                              SizedBox(height: 10,),
-                              Align(
-                                  alignment: Alignment.center,
-                                  child: Text(details[index].name, textAlign: TextAlign.center, style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500, color: Color(0xFF7E7E7E)),))
-                            ],
-                          ),
-                        ),
-
-                      ),
-                    );
-                  }),
-            ),
-            SizedBox(height: 20.0,),
-            Padding(
-              padding: const EdgeInsets.only(left: 24.0, right: 24.0),
               child: Column(
-
-                crossAxisAlignment: CrossAxisAlignment.start,
-
                 children: [
-                  Text('Donation Requests', style: GoogleFonts.poppins(fontSize: 17, fontWeight:FontWeight.w500, color: Color(0xFF272A2F)),),
-                  SizedBox(height: 10.0,),
-                  Container(
-                    padding: EdgeInsets.all(8.0),
-
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10.0)
-                    ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 22.0, top: 34.0, right: 14.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Welcome Asis', style: GoogleFonts.poppins(fontSize: 22, fontWeight: FontWeight.w500, color: Color(0xFF272A2F)),),
+                        Icon(Icons.notifications_active, size: 32, color: Color(0xFF272A2F),)
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 30.0,),
+                  Stack(
+                    children: [
+                      CarouselSlider(items: generateImageTiles(), options: CarouselOptions(
+                          enlargeCenterPage: true,
+                          autoPlay: true,
+                          aspectRatio: 2,
+                          onPageChanged: (index, reason){
+                            setState(() {
+                              _current = index;
+                            });
+                          }
+                      ))
+                    ],
+                  ),
+                  SizedBox(height: 15.0,),
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children:
+                      List.generate(images.length, (index) => buildDot(index, context)),
+
+                    ),
+                  ),
+                  SizedBox(height: 25.0,),
+                  Container(
+                    height: 140,
+                    // width: MediaQuery.of(context).size.width,
+                    child: ListView.builder(
+
+                        shrinkWrap: true,
+                        itemCount: details.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (BuildContext context, int index){
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => details[index].route)),
+                              child: Container(
+                                height: 135,
+                                width: MediaQuery.of(context).size.width*0.27,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12.0)
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only( top: 18.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Center(child: SvgPicture.asset(details[index].image,)),
+                                      SizedBox(height: 10,),
+                                      Align(
+                                          alignment: Alignment.center,
+                                          child: Text(details[index].name, textAlign: TextAlign.center, style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500, color: Color(0xFF7E7E7E)),))
+                                    ],
+                                  ),
+                                ),
+
+                              ),
+                            ),
+                          );
+                        }),
+                  ),
+                  SizedBox(height: 20.0,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+                    child: Column(
+
                       crossAxisAlignment: CrossAxisAlignment.start,
 
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 14.0),
-                          child: Column(
+                        Text('Donation Requests', style: GoogleFonts.poppins(fontSize: 17, fontWeight:FontWeight.w500, color: Color(0xFF272A2F)),),
+                        SizedBox(height: 10.0,),
+                        Container(
+                          height: 500,
+                          child:
+                        ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          // scrollDirection: Axis.vertical,
+                          itemCount: 3,
+                            itemBuilder: (BuildContext context, int index){
+                          return  Padding(
+                            padding: const EdgeInsets.only(bottom: 12.0),
+                            child: Container(
+                              padding: EdgeInsets.all(8.0),
 
-                           crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Name', style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color: Color(0xFF7E7E7E)),),
-                              SizedBox(height: 4.0,),
-                              Text('John Doe',style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500, color: Color(0xFF272A2F)), ),
-                              SizedBox(height: 8.0,),
-                              Text('location', style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color: Color(0xFF7E7E7E),),),
-                              SizedBox(height: 4.0,),
-                              Text('Patan Hospital'),
-                              SizedBox(height: 12.0,),
-                              Text('5 Minutes Ago', style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w500, color: Color(0xFF7E7E7E),),),
-                            ],
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset('assets/images/Blood Group.png'),
-                            SizedBox(height: 15.0,),
-                            ElevatedButton(
-                              style: raisedButtonStyle,
-                              onPressed: () {
-                                // if(_formkey.currentState!.validate()) {
-                                //   return;
-                                // }
-                                // else
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
-                              },
-                              child: Text(
-                                'DONATE ',
-                                style: GoogleFonts.poppins(color: Color(0xFFFFFFFF),
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.w500),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10.0)
                               ),
-                            ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
 
-                            // Image.asset('assets/images/Group 65.png')
-                          ],
-                        )
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 14.0),
+                                    child: Column(
+
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text('Name', style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color: Color(0xFF7E7E7E)),),
+                                        SizedBox(height: 4.0,),
+                                        Text('John Doe',style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500, color: Color(0xFF272A2F)), ),
+                                        SizedBox(height: 8.0,),
+                                        Text('location', style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color: Color(0xFF7E7E7E),),),
+                                        SizedBox(height: 4.0,),
+                                        Text('Patan Hospital'),
+                                        SizedBox(height: 12.0,),
+                                        Text('5 Minutes Ago', style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w500, color: Color(0xFF7E7E7E),),),
+                                      ],
+                                    ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 70.0),
+                                        child: SvgPicture.asset('assets/images/Blood Group.svg'),
+                                      ),
+                                      SizedBox(height: 15.0,),
+                                      ElevatedButton(
+                                        style: raisedButtonStyle,
+                                        onPressed: () {
+                                          showDialog(context: context, builder: (context){
+                                            return Container(
+                                              child: AlertDialog(
+                                                title: Text('Are you sure you wnat to Donate?'),
+                                                actions: [
+                                                  TextButton(onPressed: (){Navigator.pop(context);}, child: Text('Yes')),
+                                                  TextButton(onPressed: (){Navigator.pop(context);}, child: Text('No'))
+                                                ],
+                                              ),
+                                            );
+                                          });
+                                        },
+                                        child: Text(
+                                          'DONATE ',
+                                          style: GoogleFonts.poppins(color: Color(0xFFFFFFFF),
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ),
+
+                                      // Image.asset('assets/images/Group 65.png')
+                                    ],
+                                  )
+                                ],
+                              ),
+
+                            ),
+                          );
+                        }),
+                        ),
+
+
+
                       ],
                     ),
-
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
 
-            
-          ],
-        ),
+
+        )
+
       ),
     );
   }
