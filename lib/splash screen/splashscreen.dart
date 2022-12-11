@@ -1,11 +1,14 @@
 
 
+import 'package:blooddonation/splash%20screen/onboardingscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'introsliderpage.dart';
+import '../bloc/app_events.dart';
 
 class SplashScreen extends StatefulWidget {
+
   const SplashScreen({Key? key}) : super(key: key);
   
 
@@ -23,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   _navigatetohome() async {
     await Future.delayed(Duration(seconds: 2), (){});
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> IntroSliderPage()));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> OnboardingFinalScreen()));
   }
   
   @override

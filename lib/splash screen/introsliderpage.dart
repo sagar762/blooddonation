@@ -4,6 +4,16 @@ import 'package:blooddonation/splash%20screen/onboardingscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+int ?initScreen;
+
+Future<void> main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SharedPreferences preferences = await SharedPreferences.getInstance();
+  // initScreen = (await preferences.getInt('initScreen'));
+  // await preferences.setInt('initScreen', 1);
+
+}
+
 class IntroSliderPage extends StatefulWidget {
   const IntroSliderPage({Key? key}) : super(key: key);
 

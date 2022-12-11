@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../HomeScreens/HomeScreen.dart';
 import '../request/createrequest.dart';
 import 'donationrequest.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BottomNavBar extends StatefulWidget {
   Icon? icon;
@@ -41,14 +42,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
         child: Container(
 
           // padding: EdgeInsets.only(left: 8.0, right: 8.0),
-            height: 60,
+            height: 60.h,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
 
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 MaterialButton(
-                  minWidth: 40,
+                  minWidth: 40.w,
                   onPressed: (){
                     setState(() {
                       currentScreen = HomeScreen();
@@ -60,13 +61,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.home, size: 30, color: currentTab==0? Color(0xFFE22030) : Color(0xFFB3B3B3),),
+                      Icon(Icons.home, size: 30.sp, color: currentTab==0? Color(0xFFE22030) : Color(0xFFB3B3B3),),
                       Container(
                         height: 5,
                         width: currentTab == 0 ? 5 :5,
-                        margin: EdgeInsets.only(right: 5.0),
+                        margin: EdgeInsets.only(right: 5.0.r),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(20.w),
                             color: currentTab == 0 ? Color(0xFFE22030) : Colors.white
                         ),
                       ),
@@ -74,7 +75,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   ),
                 ),
                 MaterialButton(
-                  minWidth: 40,
+                  minWidth: 40.w,
                   onPressed: (){
                     setState(() {
                       currentScreen = SearchScreen();
@@ -86,13 +87,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.search, size: 30, color: currentTab==1? Color(0xFFE22030) : Color(0xFFB3B3B3),),
+                      Icon(Icons.search, size: 30.sp, color: currentTab==1? Color(0xFFE22030) : Color(0xFFB3B3B3),),
                       Container(
-                        height: 5,
-                        width: currentTab == 1 ? 5 :5,
-                        margin: EdgeInsets.only(right: 5.0),
+                        height: 5.h,
+                        width: currentTab == 1 ? 5.w :5.w,
+                        margin: EdgeInsets.only(right: 5.0.r),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(20.w),
                             color: currentTab == 1 ? Color(0xFFE22030) : Colors.white
                         ),
                       ),
@@ -100,7 +101,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   ),
                 ),
                 MaterialButton(
-                  minWidth: 40,
+                  minWidth: 40.w,
                   onPressed: (){
                     setState(() {
                       currentScreen = DontaionRequest();
@@ -111,13 +112,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.card_travel, size: 30, color: currentTab==2? Color(0xFFE22030) : Color(0xFFB3B3B3),),
+                      Icon(Icons.card_travel, size: 30.sp, color: currentTab==2? Color(0xFFE22030) : Color(0xFFB3B3B3),),
                       Container(
                         height: 5,
-                        width: currentTab == 2 ? 5 :5,
-                        margin: EdgeInsets.only(right: 5.0),
+                        width: currentTab == 2 ? 5.w :5.w,
+                        margin: EdgeInsets.only(right: 5.0.r),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(20.w),
                             color: currentTab == 2 ? Color(0xFFE22030) : Colors.white
                         ),
                       ),
@@ -125,7 +126,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   ),
                 ),
                 MaterialButton(
-                  minWidth: 40,
+                  minWidth: 40.w,
                   onPressed: (){
                     setState(() {
                       currentScreen = ProfileScreen();
@@ -137,13 +138,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.person, size: 30, color: currentTab==3? Color(0xFFE22030) : Color(0xFFB3B3B3),),
+                      Icon(Icons.person, size: 30.sp, color: currentTab==3? Color(0xFFE22030) : Color(0xFFB3B3B3),),
                       Container(
                         height: 5,
-                        width: currentTab == 3 ? 5 :5,
-                        margin: EdgeInsets.only(right: 5.0),
+                        width: currentTab == 3 ? 5.w :5.w,
+                        margin: EdgeInsets.only(right: 5.0.r),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(20.w),
                             color: currentTab == 3 ? Color(0xFFE22030) : Colors.white
                         ),
                       ),

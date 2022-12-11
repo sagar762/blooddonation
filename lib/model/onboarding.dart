@@ -67,6 +67,9 @@ List<DonorDetails> donors = [
   DonorDetails(image1: 'assets/images/Rectangle 24 (3).png', image2: 'assets/images/Blood Group.png'),
   DonorDetails(image1: 'assets/images/Rectangle 24 (2).png', image2: 'assets/images/Blood Group.png'),
   DonorDetails(image1: 'assets/images/Rectangle 24 (1).png', image2: 'assets/images/Blood Group.png'),
+  DonorDetails(image1: 'assets/images/Rectangle 24 (1).png', image2: 'assets/images/Blood Group.png'),
+  DonorDetails(image1: 'assets/images/Rectangle 24 (1).png', image2: 'assets/images/Blood Group.png'),
+  DonorDetails(image1: 'assets/images/Rectangle 24 (1).png', image2: 'assets/images/Blood Group.png'),
 
 ];
 
