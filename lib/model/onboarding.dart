@@ -2,6 +2,9 @@
 
 import 'package:blooddonation/bottomNavBar/donationrequest.dart';
 import 'package:blooddonation/donorlist.dart';
+import 'package:blooddonation/loginscreen/LoginScreen.dart';
+import 'package:blooddonation/myrequest.dart';
+import 'package:blooddonation/splash%20screen/description.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../request/createrequest.dart';
@@ -30,7 +33,7 @@ class HomeContent {
 List<HomeContent> details = [
   HomeContent(name: 'Donors List', image: 'assets/images/ion_search-outline.svg', route: DonorList() ),
   HomeContent(name: 'Request Blood', image: 'assets/images/si-glyph_blood-bag.svg', route: DontaionRequest()),
-  HomeContent(name: 'My Request', image: 'assets/images/openmoji_blood-transfusion.svg', route: DontaionRequest())
+  HomeContent(name: 'My Request', image: 'assets/images/openmoji_blood-transfusion.svg', route: MyRequest())
 ];
 
 class DropDownContent {
@@ -90,12 +93,13 @@ class ProfileDetails{
   String image;
   String number;
   String text;
+
   
-  ProfileDetails({required this.image, required this.number, required this.text});
+  ProfileDetails({required this.image, required this.number, required this.text,});
 }
 
 List<ProfileDetails> detail = [
-  ProfileDetails(image: 'assets/images/Group 32.svg', number: 'A+', text: 'Blood Group'),
+  ProfileDetails(image: 'assets/images/Group 32.svg', number: 'A+', text: 'Blood Group',),
   ProfileDetails(image: 'assets/images/Vector (3).svg', number: '05', text: 'Donated'),
   ProfileDetails(image: 'assets/images/Vector (2).svg', number: '02', text: 'Requested'),
 ];
@@ -104,15 +108,16 @@ class Profileextra{
   String image;
   String title;
   Icon? icon1;
+  final Widget route;
 
-  Profileextra({required this.image, required this.title});
+  Profileextra({required this.image, required this.title, required this.route});
 }
 
 List<Profileextra> extras = [
   // Profileextra(image: 'assets/images/carbon_event-schedule.svg', title: 'Available for donation'),
-  Profileextra(image: 'assets/images/bpmn_start-event-message.svg', title: 'Invite a friend'),
-  Profileextra(image: 'assets/images/clarity_help-info-line.svg', title: 'Get help'),
-  Profileextra(image: 'assets/images/la_sign-out-alt.svg', title: 'Sign out'),
+  Profileextra(image: 'assets/images/bpmn_start-event-message.svg', title: 'Invite a friend', route: DescriptionScreen()),
+  Profileextra(image: 'assets/images/clarity_help-info-line.svg', title: 'Get help', route: DescriptionScreen()),
+  Profileextra(image: 'assets/images/la_sign-out-alt.svg', title: 'Sign out', route: LoginScreen()),
 
 ];
 

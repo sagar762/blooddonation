@@ -1,8 +1,13 @@
+import 'package:blooddonation/HomeScreens/HomePage.dart';
+import 'package:blooddonation/HomeScreens/HomeScreen.dart';
 import 'package:blooddonation/SignupScreen/SignupScreen.dart';
 import 'package:blooddonation/loginscreen/LoginScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+
+String? finalEmail;
 class OnboardingFinalScreen extends StatefulWidget {
    OnboardingFinalScreen({Key? key}) : super(key: key);
 
@@ -35,8 +40,25 @@ class _OnboardingFinalScreenState extends State<OnboardingFinalScreen> {
       borderRadius: BorderRadius.all(Radius.circular(22)),
     ),
   );
- 
 
+  Future getValidationData() async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    var obtainedEmail = sharedPreferences.getString('email');
+    setState(() {
+      finalEmail = obtainedEmail;
+    });
+    print(finalEmail);
+  }
+
+  @override
+  void initState() {
+    getValidationData().whenComplete(() async{
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => finalEmail == null ? LoginScreen() : HomePage()));
+
+    });
+    // TODO: implement initState
+    super.initState();
+  }
 
 
   @override
@@ -62,7 +84,7 @@ class _OnboardingFinalScreenState extends State<OnboardingFinalScreen> {
               child: ElevatedButton(
                 style: raisedButtonStyle,
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => LoginScreen()));
                 },
                 child: Text(
                   'LOG IN ',
@@ -77,7 +99,7 @@ class _OnboardingFinalScreenState extends State<OnboardingFinalScreen> {
               child: ElevatedButton(
                 style: raisedButtonStyle1,
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> SignupScreen()));
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignupScreen()));
                 },
                 child: Text(
                   'REGISTER ',

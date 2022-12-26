@@ -33,7 +33,7 @@ class DontaionRequest extends StatelessWidget {
           padding: const EdgeInsets.only(top: 22.0).h,
           child: Column(
             children: [
-              TextFormField1( title: 'John Doe', hintTxt: 'Name',  keyboardtype: TextInputType.text),
+              TextFormField1(icon: Icon(Icons.person, color:  Color(0xFFE22030),), title: 'John Doe', hintTxt: 'Name',  keyboardtype: TextInputType.text),
               SizedBox(height: 20.0.h,),
               TextFormField1(icon:Icon(Icons.location_on, color: Color(0xFFE22030),), title: 'City', hintTxt: 'City', keyboardtype: TextInputType.text),
               SizedBox(height: 20.0.h,),

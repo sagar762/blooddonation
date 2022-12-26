@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:switcher/switcher.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -130,8 +131,8 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         Text('Available for donation', style: GoogleFonts.poppins(fontSize:14.sp, fontWeight: FontWeight.w500, color: Color(0xFF7C7C7C) ),),
 
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 85.0).w,
+                        Container(
+                          margin: EdgeInsets.only(left: 100.0.w),
                           child: Switcher(
                             value: false,
                             colorOff: Colors.red.withOpacity(0.3),
@@ -176,7 +177,13 @@ class ProfileScreen extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(horizontal: 12.0).w,
                               child: SvgPicture.asset(extras[index].image),
                             ),
-                            Text(extras[index].title, style: GoogleFonts.poppins(fontSize:14.sp, fontWeight: FontWeight.w500, color: Color(0xFF7C7C7C) ),)
+                            GestureDetector(
+                              onTap: () async {
+                                final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                                sharedPreferences.remove('email');
+                                Navigator.push(context, MaterialPageRoute(builder: (_) => extras[index].route));
+                              },
+                                child: Text(extras[index].title, style: GoogleFonts.poppins(fontSize:14.sp, fontWeight: FontWeight.w500, color: Color(0xFF7C7C7C) ),))
 
                           ],
                         ),

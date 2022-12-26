@@ -1,10 +1,12 @@
 
+import 'package:blooddonation/main.dart';
 import 'package:blooddonation/model/onboarding.dart';
 import 'package:blooddonation/splash%20screen/onboardingscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-int ?initScreen;
+
 
 Future<void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +32,7 @@ class _IntroSliderPageState extends State<IntroSliderPage> {
     // TODO: implement initState
     _controller = PageController(initialPage: 0);
     super.initState();
+    setSeenonboard();
   }
 
   @override
@@ -135,4 +138,11 @@ class _IntroSliderPageState extends State<IntroSliderPage> {
   TextStyle TextMainStyle() {
     return GoogleFonts.poppins(fontSize: 20.0, color: Color(0xFF7E7E7E), fontWeight: FontWeight.w400 );
   }
+
+  Future setSeenonboard() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    seenOnboard = await prefs.setBool('seenOnboard', true);
+  }
+
+
 }

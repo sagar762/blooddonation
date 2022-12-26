@@ -12,6 +12,7 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   int _value = 1;
+
   @override
   Widget build(BuildContext context) {
     String? register;
@@ -27,120 +28,146 @@ class _SignupScreenState extends State<SignupScreen> {
         borderRadius: BorderRadius.all(Radius.circular(22)),
       ),
     );
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Color(0xFFF8F8F8),
-      body: Padding(
-        padding: const EdgeInsets.only(top:50.0),
-        child: Column(
-          children: [
-            Center(
-              child: Image.asset('assets/images/Logo.png', color: Color(0xFFFF2156),height: 100, width: 201,) ,
-            ),
-            SizedBox(height: 10,),
-            Text('App Name', textAlign: TextAlign.center, style: GoogleFonts.poppins(fontSize: 22, fontWeight: FontWeight.w500, color: Color(0xFFE22030)),),
-            SizedBox(height: 40,),
-            TextFormField1(icon: Icon(Icons.person, color: Color(0xFFE22030),size: MediaQuery.of(context).size.width * 0.07,), title: 'Email', hintTxt: 'Enter your username', obstxt: false, keyboardtype: TextInputType.name,),
-            SizedBox(height: 10.0,),
-            TextFormField1(icon: Icon(Icons.email, color: Color(0xFFE22030),size: MediaQuery.of(context).size.width * 0.07,), title: 'Password',hintTxt: 'Enter your email', obstxt: true, keyboardtype: TextInputType.emailAddress,),
-            SizedBox(height: 10.0,),
-            TextFormField1(icon: Icon(Icons.lock, color: Color(0xFFE22030),size: MediaQuery.of(context).size.width * 0.07,), title: 'Password',hintTxt: 'Enter your password', obstxt: true, keyboardtype: TextInputType.visiblePassword),
-            SizedBox(height: 10.0,),
-            TextFormField1(icon: Icon(Icons.call, color: Color(0xFFE22030),size: MediaQuery.of(context).size.width * 0.07,), title: 'Password',hintTxt: 'Enter your phone number', obstxt: true, keyboardtype: TextInputType.number,),
-            SizedBox(height: 10.0,),
-            TextFormField1(icon: Icon(Icons.location_on, color: Color(0xFFE22030),size: MediaQuery.of(context).size.width * 0.07,), title: 'Password',hintTxt: 'Enter your location', obstxt: true, keyboardtype: TextInputType.name,),
-            SizedBox(height: 10.0,),
+    return WillPopScope(
+      onWillPop: () async {
+        final value = await  showDialog<bool>(context: context, builder: (context){
+          return AlertDialog(
+            title: const Text('Alert'),
+            content: Text('Are you sure you want to exit the app?'),
+            actions: [
+              ElevatedButton(onPressed: ()=> Navigator.of(context).pop(false), child: Text('No')),
+              ElevatedButton(onPressed: ()=> Navigator.of(context).pop(true), child: Text('Yes'))
+            ],
+          );
+        });
+        if(value!=null){
+          return Future.value(value);
+        }else{
+          return Future.value(false);
+        }
+      },
+      child: SafeArea(
+        child: Scaffold(
+
+          // resizeToAvoidBottomInset: false,
+          
+          backgroundColor: Color(0xFFF8F8F8),
+          body: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Padding(
+              padding: const EdgeInsets.only(top:50.0),
+              child: Column(
+                children: [
+                  Center(
+                    child: Image.asset('assets/images/Logo.png', color: Color(0xFFFF2156),height: 100, width: 201,) ,
+                  ),
+                  SizedBox(height: 10,),
+                  Text('App Name', textAlign: TextAlign.center, style: GoogleFonts.poppins(fontSize: 22, fontWeight: FontWeight.w500, color: Color(0xFFE22030)),),
+                  SizedBox(height: 40,),
+                  TextFormField1(icon: Icon(Icons.person, color: Color(0xFFE22030),size: MediaQuery.of(context).size.width * 0.07,), title: 'Email', hintTxt: 'Enter your username', obstxt: false, keyboardtype: TextInputType.name,),
+                  SizedBox(height: 10.0,),
+                  TextFormField1(icon: Icon(Icons.email, color: Color(0xFFE22030),size: MediaQuery.of(context).size.width * 0.07,), title: 'Password',hintTxt: 'Enter your email', obstxt: true, keyboardtype: TextInputType.emailAddress,),
+                  SizedBox(height: 10.0,),
+                  TextFormField1(icon: Icon(Icons.lock, color: Color(0xFFE22030),size: MediaQuery.of(context).size.width * 0.07,), title: 'Password',hintTxt: 'Enter your password', obstxt: true, keyboardtype: TextInputType.visiblePassword),
+                  SizedBox(height: 10.0,),
+                  TextFormField1(icon: Icon(Icons.call, color: Color(0xFFE22030),size: MediaQuery.of(context).size.width * 0.07,), title: 'Password',hintTxt: 'Enter your phone number', obstxt: true, keyboardtype: TextInputType.number,),
+                  SizedBox(height: 10.0,),
+                  TextFormField1(icon: Icon(Icons.location_on, color: Color(0xFFE22030),size: MediaQuery.of(context).size.width * 0.07,), title: 'Password',hintTxt: 'Enter your location', obstxt: true, keyboardtype: TextInputType.name,),
+                  SizedBox(height: 10.0,),
 
 
-            Column(
-              // mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 170.0),
-                  child: Text('Register as', style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),),
-                ),
-                Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left:60.0),
-                        child: Row(
-
-                          children: [
-                            Radio(
-                                fillColor:
-                                MaterialStateColor.resolveWith((states) => Color(0xFFE22030)),
-                                value: 1, groupValue: _value, onChanged: (index) {
-                                  setState(() {
-                                    _value = 1;
-                                  });
-                            }),
-                            Expanded(
-                              child: Text('Donor'),
-                            )
-                          ],
-                        ),
+                  Column(
+                    // mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 170.0),
+                        child: Text('Register as', style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),),
                       ),
-                      flex: 1,
-                    ),
-                    Expanded(
-                      child: Row(
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Radio(
-                              fillColor:
-                              MaterialStateColor.resolveWith((states) => Color(0xFFE22030)),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left:60.0),
+                              child: Row(
 
-                              value: 2, groupValue: _value, onChanged: (index) {
-                                setState(() {
-                                  _value = 2;
-                                });
-                          }),
-                          Expanded(child: Text('User'))
+                                children: [
+                                  Radio(
+                                      fillColor:
+                                      MaterialStateColor.resolveWith((states) => Color(0xFFE22030)),
+                                      value: 1, groupValue: _value, onChanged: (index) {
+                                        setState(() {
+                                          _value = 1;
+                                        });
+                                  }),
+                                  Expanded(
+                                    child: Text('Donor'),
+                                  )
+                                ],
+                              ),
+                            ),
+                            flex: 1,
+                          ),
+                          Expanded(
+                            child: Row(
+                              children: [
+                                Radio(
+                                    fillColor:
+                                    MaterialStateColor.resolveWith((states) => Color(0xFFE22030)),
+
+                                    value: 2, groupValue: _value, onChanged: (index) {
+                                      setState(() {
+                                        _value = 2;
+                                      });
+                                }),
+                                Expanded(child: Text('User'))
+                              ],
+                            ),
+                            flex: 1,
+                          ),
+
                         ],
                       ),
-                      flex: 1,
+
+                    ],
+                  ),
+
+                  TextFormField1(icon: Icon(Icons.water_drop, color: Color(0xFFE22030),size: MediaQuery.of(context).size.width * 0.07,), title: 'Password',hintTxt: 'Enter your blood group', obstxt: true, keyboardtype: TextInputType.text,),
+                  SizedBox(height: 15.0,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 22.0, right: 22.0),
+                    child: ElevatedButton(
+                      style: raisedButtonStyle,
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
+                      },
+                      child: Text(
+                        'REGISTER ',
+                        style: GoogleFonts.poppins(color: Color(0xFFFFFFFF), fontSize: 22.0, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 5.0,),
+                   Container(
+                        // margin: EdgeInsets.only(top: 90.0),
+                        child:Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          // crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text('Already have an account?', style: GoogleFonts.poppins(fontWeight:FontWeight.w500, fontSize: 18.0, color: Color(0xFF7E7E7E)),),
+                            TextButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));}, child: Text('Login', style: GoogleFonts.poppins(fontWeight:FontWeight.w500, fontSize: 18.0, color: Color(0xFFE22030)),))
+                          ],
+                        )
                     ),
 
-                  ],
-                ),
 
-              ],
-            ),
 
-            TextFormField1(icon: Icon(Icons.water_drop, color: Color(0xFFE22030),size: MediaQuery.of(context).size.width * 0.07,), title: 'Password',hintTxt: 'Enter your blood group', obstxt: true, keyboardtype: TextInputType.text,),
-            SizedBox(height: 15.0,),
-            Padding(
-              padding: const EdgeInsets.only(left: 22.0, right: 22.0),
-              child: ElevatedButton(
-                style: raisedButtonStyle,
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
-                },
-                child: Text(
-                  'REGISTER ',
-                  style: GoogleFonts.poppins(color: Color(0xFFFFFFFF), fontSize: 22.0, fontWeight: FontWeight.w500),
-                ),
+
+
+                ],
               ),
             ),
-            SizedBox(height: 5.0,),
-             Container(
-                  // margin: EdgeInsets.only(top: 90.0),
-                  child:Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    // crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text('Already have an account?', style: GoogleFonts.poppins(fontWeight:FontWeight.w500, fontSize: 18.0, color: Color(0xFF7E7E7E)),),
-                      TextButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));}, child: Text('Login', style: GoogleFonts.poppins(fontWeight:FontWeight.w500, fontSize: 18.0, color: Color(0xFFE22030)),))
-                    ],
-                  )
-              ),
-
-
-
-
-
-          ],
+          ),
         ),
       ),
     );

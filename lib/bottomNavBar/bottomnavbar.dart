@@ -1,4 +1,5 @@
 
+
 import 'package:blooddonation/bottomNavBar/person.dart';
 import 'package:blooddonation/bottomNavBar/search.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   final List<Widget> screens = [
     HomeScreen(),
-    DontaionRequest(),
+    DonationRequest(),
     ProfileScreen(),
     SearchScreen(),
 
@@ -104,7 +105,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   minWidth: 40.w,
                   onPressed: (){
                     setState(() {
-                      currentScreen = DontaionRequest();
+                      currentScreen = DonationRequest();
                       currentTab = 2;
                     });
                   },

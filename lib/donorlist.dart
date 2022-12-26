@@ -108,63 +108,7 @@ class DonorList extends StatelessWidget {
               );
             }),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          //   child: Container(
-          //     height: 125,
-          //     decoration: BoxDecoration(
-          //       color: Colors.white,
-          //       borderRadius: BorderRadius.circular(12.0)
-          //     ),
-          //     child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //       children: [
-          //         ClipRect(
-          //           child: Padding(
-          //             padding: const EdgeInsets.only(left: 14.0),
-          //             child: Container(
-          //
-          //               height: 100,
-          //               width: 100,
-          //               decoration: BoxDecoration(
-          //                 // color: Colors.red,
-          //                 borderRadius: BorderRadius.circular(10.0)
-          //               ),
-          //               child: Image.asset('assets/images/Rectangle 24.png', fit: BoxFit.cover,),
-          //             ),
-          //           ),
-          //         ),
-          //         Padding(
-          //           padding: const EdgeInsets.only( right: 20.0),
-          //           child: Column(
-          //             mainAxisAlignment: MainAxisAlignment.center,
-          //             crossAxisAlignment: CrossAxisAlignment.start,
-          //             children: [
-          //               Text('John Doe', style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500, color: Color(0xFF272A2F) ),),
-          //               Padding(
-          //                 padding: const EdgeInsets.only(top: 10.0),
-          //                 child: Row(
-          //                   children: [
-          //                     Icon(Icons.location_on, color: Color(0xFFE22030),),
-          //                     Text('New Baneshwor', style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w500,color: Color(0xFF7E7E7E)),)
-          //                   ],
-          //                 ),
-          //               )
-          //             ],
-          //           ),
-          //         ),
-          //
-          //         Padding(
-          //           padding: const EdgeInsets.only(right: 8.0),
-          //           child: Image.asset('assets/images/Blood Group.png'),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // )
-          // Expanded(child: ListView.builder(itemBuilder: (BuildContext context, int index){
-          //   return
-          // }))
+
         ],
       ),
     );
